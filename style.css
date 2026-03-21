@@ -173,7 +173,8 @@ th {
     color: var(--text-main);
 }
 
-/* For when table rows are added via JS */
+
+
 td {
     padding: 14px 1rem;
     font-size: 0.85rem;
