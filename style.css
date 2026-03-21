@@ -1,0 +1,350 @@
+/* Color Palette & Base Variables based on the image */
+:root {
+    --bg-main: #1c1d2b;       /* Dark background */
+    --bg-card: #20263f;       /* Slightly lighter blue for cards */
+    --accent: #f04b66;        /* Pinkish red accent */
+    --text-main: #ffffff;     /* Primary text */
+    --text-muted: #a1a1aa;    /* Secondary/Muted text */
+    --header-bg: #1c1d2b;     /* Header background */
+    --input-bg: #162b4d;      /* Deep blue for input fields */
+    --btn-blue: #3498db;      /* Add to cart blue */
+    --btn-green: #2ecc71;     /* Purchase green */
+    --btn-orange: #f39c12;    /* Reset / Subtotal orange */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+/* ----------------- Header & Navigation ----------------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--header-bg);
+    border-bottom: 2px solid var(--bg-card);
+    position: relative;
+}
+
+/* Creating the red accent line under the header */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--accent);
+    opacity: 0.5;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    padding: 6px 16px;
+    border-radius: 20px;
+}
+
+.nav-link:hover {
+    color: var(--text-main);
+}
+
+.nav-link.active {
+    background-color: var(--accent);
+    color: var(--text-main);
+}
+
+.btn-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-main);
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+    background-color: white; /* White circle background for user icon like in image */
+}
+
+/* ----------------- Main Content ----------------- */
+main {
+    padding: 2rem 5%;
+}
+
+.page-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+/* ----------------- Stats Grid ----------------- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background-color: var(--bg-card);
+    padding: 2.5rem 1.5rem;
+    border-radius: 6px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.stat-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+/* Special styling for the Revenue card */
+.revenue-card {
+    border: 1px solid var(--accent);
+}
+
+/* ----------------- Table Section ----------------- */
+.table-container {
+    width: 100%;
+}
+
+.table-header {
+    background-color: var(--accent);
+    color: var(--text-main);
+    padding: 12px 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px 6px 0 0;
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+thead tr {
+    background-color: var(--bg-card);
+}
+
+th {
+    text-align: left;
+    padding: 14px 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* For when table rows are added via JS */
+td {
+    padding: 14px 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* ----------------- Orders Layout ----------------- */
+.order-main-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Left side slightly wider */
+    gap: 2rem;
+    align-items: start;
+}
+
+.left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ----------------- Form Cards ----------------- */
+.form-card {
+    background-color: transparent;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.form-card-header {
+    background-color: var(--accent);
+    padding: 12px 1rem;
+}
+
+.form-card-header h3 {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-card-field {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 1.5rem 0 0 0;
+}
+
+/* ----------------- Inputs & Selects ----------------- */
+.input-box, .comb-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-box.full-width {
+    grid-column: span 2; /* Makes address and balance stretch full width */
+}
+
+.input-box label, .comb-box label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.input-box input, .comb-box select {
+    background-color: var(--input-bg);
+    border: none;
+    color: var(--text-main);
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    outline: none;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.input-box input:focus, .comb-box select:focus {
+    background-color: #1a365d; /* Slightly lighter on focus */
+}
+
+/* ----------------- Buttons ----------------- */
+.buttons {
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    color: var(--text-main);
+}
+
+.buttons:hover {
+    opacity: 0.85;
+}
+
+.add-to-cart-btn {
+    background-color: var(--btn-blue);
+    width: 100%;
+    padding: 12px;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.btn-remove {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+/* ----------------- Summary Card ----------------- */
+.summary-card {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 6px;
+}
+
+.total-text {
+    font-size: 1.4rem;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+}
+
+.subtotal-text {
+    font-size: 1.1rem;
+    color: var(--btn-orange);
+    margin-bottom: 1.5rem;
+}
+
+.order-summary-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.summary-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.btn-reset {
+    background-color: var(--btn-orange);
+    padding: 10px 20px;
+}
+
+.btn-purchase {
+    background-color: var(--btn-green);
+    padding: 10px 20px;
+    flex-grow: 1; /* Makes the purchase button take up remaining space */
+}
+
+/* ----------------- Table adjustments ----------------- */
+.cart-item-table-container table {
+    margin-top: 0;
+}
+.cart-item-table-container th, 
+.cart-item-table-container td {
+    padding: 12px 1rem;
+}
+
+/* Hide other sections by default */
+.hidden, .content-section {
+    display: none;
+}
+
+.content-section.active {
+    display: block;
+}
