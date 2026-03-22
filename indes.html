@@ -11,20 +11,40 @@
 <body>
 
     <!-- Login Page -->
-    <div id="login-page" class="login-page active">
-        <div class="login-container">
-            <h2>LOGIN</h2>
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" id="username" placeholder="Enter username">
+    <section id="login" class="login content-section">
+        <div class="login-wrapper">
+            <div class="login-container glass-card">
+
+                <div class="login-header">
+                    <div class="logo-circle">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to access the POS System</p>
+                </div>
+
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="username" placeholder="Enter your username">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" placeholder="Enter your password">
+                        </div>
+                    </div>
+
+                    <button id="login-btn" class="btn-primary login-btn">Login to Dashboard</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="Enter password">
-            </div>
-            <button id="login-btn" class="btn-primary">Login</button>
         </div>
-    </div>
+    </section>
     <div id="main-app">
         <header>
             <div class="logo">
@@ -40,9 +60,15 @@
                 <a href="#" class="nav-link nav-customers" data-target="customers">Customers</a>
                 <a href="#" class="nav-link nav-history" data-target="history">History</a>
             </nav>
-            <span id="user-btn" class="btn-user">
-                <img src="assets/user-logo.svg" alt="user-logo" class="user-logo">
-            </span>
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode" title="Switch theme">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                    <span class="theme-label">Dark</span>
+                </button>
+                <span id="user-btn" class="btn-user">
+                    <img src="assets/user-logo.svg" alt="user-logo" class="user-logo">
+                </span>
+            </div>
         </header>
 
         <main>
@@ -88,7 +114,7 @@
                     <div class="left-column">
                         <div class="form-card invoice-card">
                             <div class="form-card-header">
-                                <h3 class="card-header">Invoice Details</h3>
+                                <h3 class="card-header-text">Invoice Details</h3>
                             </div>
                             <div class="form-card-field">
                                 <div class="input-box">
@@ -144,7 +170,7 @@
                                         <td>5000</td>
                                         <td>2</td>
                                         <td>10000</td>
-                                        <td><button class="btn-remove">Remove</button></td>
+                                        <td><button class="buttons order-buttons btn-remove">Remove</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -154,7 +180,7 @@
                     <div class="right-column">
                         <div class="form-card item-select-card">
                             <div class="form-card-header">
-                                <h3 class="card-header">Item Select</h3>
+                                <h3 class="card-header-text">Item Select</h3>
                             </div>
                             <div class="form-card-field">
                                 <div class="comb-box">
@@ -183,8 +209,10 @@
                                     <label>QTYonH:</label>
                                     <input type="text" id="order-item-qty-on-hand" readonly>
                                 </div>
+                                <button class="buttons order-buttons add-to-cart-btn" id="add-to-cart">Add To
+                                    Cart</button>
+
                             </div>
-                            <button class="buttons order-buttons add-to-cart-btn" id="add-to-cart">Add To Cart</button>
                         </div>
 
                         <div class="summary-card">
@@ -216,14 +244,14 @@
             </section>
 
             <!-- Items Section -->
-            <section id="items" class="items content-section">
+            <section id="items" class="items content-section active">
+                <h2 class="page-title">Manage Items</h2>
 
                 <div class="item-main-container">
-
                     <div class="manage-header">
                         <div class="manage-box item-manage-box">
                             <div class="form-inline item-form-inline">
-                                <input type="text" id="item-name-input" placeholder="Item Name">
+                                <input type="text" id="item-name-input" placeholder="Item Name" class="wide-input">
                                 <input type="number" id="item-price-input" placeholder="Price">
                                 <input type="number" id="item-qty-input" placeholder="Stock Qty">
                             </div>
@@ -235,9 +263,10 @@
                         </div>
 
                         <div class="search-box">
-                            <input type="text" placeholder="Search ...">
+                            <input type="text" placeholder="Search ..." id="item-search">
                         </div>
                     </div>
+
                     <div class="table-container item-table-container">
                         <h3 class="table-header">Items</h3>
                         <table>
@@ -250,14 +279,24 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="items-table-body"></tbody>
+                            <tbody id="items-table-body">
+                                <tr>
+                                    <td>ITM-001</td>
+                                    <td>Item one</td>
+                                    <td>5000</td>
+                                    <td>10</td>
+                                    <td><button class="btn-delete">Delete</button></td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </section>
 
             <!-- Customers Section -->
-            <section id="customers" class="customers content-section">
+            <section id="customers" class="customers content-section active">
+                <h2 class="page-title">Manage Customers</h2>
+
                 <div class="customer-main-container">
                     <div class="manage-header">
                         <div class="manage-box customer-manage-box">
@@ -272,8 +311,9 @@
                                 <button class="buttons customer-buttons btn-reset" id="reset-customer">Reset</button>
                             </div>
                         </div>
+
                         <div class="search-box">
-                            <input type="text" placeholder="Search ...">
+                            <input type="text" placeholder="Search ..." id="customer-search">
                         </div>
                     </div>
 
@@ -289,21 +329,33 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="customers-table-body"></tbody>
+                            <tbody id="customers-table-body">
+                                <tr>
+                                    <td>CUS-001</td>
+                                    <td>Customer one</td>
+                                    <td>0784561231</td>
+                                    <td>Galle</td>
+                                    <td><button class="btn-delete">Delete</button></td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </section>
 
             <!-- History Section -->
-            <section id="history" class="history content-section">
+            <section id="history" class="history content-section active">
+                <h2 class="page-title">Order History</h2>
+
                 <div class="history-main-container">
-                    <div class="manage-header">
-                        <button class="buttons history-buttons btn-reset">Reset</button>
-                        <div class="search-box">
-                            <input type="text" placeholder="Search ...">
+                    <div class="manage-header align-center">
+                        <button class="buttons history-buttons btn-reset" id="history-reset">Reset</button>
+
+                        <div class="search-box history-search-box">
+                            <input type="text" placeholder="Search ..." id="history-search">
                         </div>
                     </div>
+
                     <div class="table-container history-table-container">
                         <h3 class="table-header">Order History</h3>
                         <table>
@@ -315,13 +367,35 @@
                                     <th>Total</th>
                                 </tr>
                             </thead>
-                            <tbody id="history-table-body"></tbody>
+                            <tbody id="history-table-body">
+                                <tr>
+                                    <td>ODR-001</td>
+                                    <td>John</td>
+                                    <td>2026-02-20</td>
+                                    <td>5000</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </section>
         </main>
+
     </div>
+    <footer class="system-footer">
+        <div class="footer-left">
+            <span class="status-indicator online"></span>
+            <p>System Online</p>
+        </div>
+
+        <div class="footer-center">
+            <p>© 2026 <strong>Hasitha Wijesinghe</strong> | All Rights Reserved</p>
+        </div>
+
+        <div class="footer-right">
+            <p>v1.0.4 | Terminal: <strong>01</strong></p>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 

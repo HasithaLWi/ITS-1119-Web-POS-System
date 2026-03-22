@@ -1,4 +1,6 @@
-/* Color Palette & Base Variables based on the image */
+/* =========================================================
+   1. BASE VARIABLES & RESETS
+   ========================================================= */
 :root {
     --bg-main: #1c1d2b;       /* Dark background */
     --bg-card: #20263f;       /* Slightly lighter blue for cards */
@@ -6,10 +8,25 @@
     --text-main: #ffffff;     /* Primary text */
     --text-muted: #a1a1aa;    /* Secondary/Muted text */
     --header-bg: #1c1d2b;     /* Header background */
-    --input-bg: #162b4d;      /* Deep blue for input fields */
+    /* --input-bg: #162b4d;      Deep blue for input fields */
+    --input-bg: #2a314d;
+
     --btn-blue: #3498db;      /* Add to cart blue */
     --btn-green: #2ecc71;     /* Purchase green */
     --btn-orange: #f39c12;    /* Reset / Subtotal orange */
+}
+
+body.light-mode {
+    --bg-main: #eef3ff;
+    --bg-card: #ffffff;
+    --accent: #d84c6f;
+    --text-main: #1d2333;
+    --text-muted: #55607a;
+    --header-bg: #ffffff;
+    --input-bg: #e8efff;
+    --btn-blue: #2f78d9;
+    --btn-green: #2f9f66;
+    --btn-orange: #db8c13;
 }
 
 * {
@@ -24,7 +41,36 @@ body {
     color: var(--text-main);
 }
 
-/* ----------------- Header & Navigation ----------------- */
+/* =========================================================
+   2. TEMPORARY "ALL VIEWED" OVERRIDE
+   ========================================================= */
+/* Delete or comment out this block when you add JavaScript navigation */
+.content-section {
+    display: block !important;
+    margin-bottom: 5rem; /* Adds breathing room between sections */
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1); /* Visual separator */
+    padding-bottom: 3rem;
+}
+
+/* Normal toggle classes (Will be used by JS later) */
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   3. GLOBAL LAYOUT & HEADER
+   ========================================================= */
+main {
+    padding: 2rem 5%;
+}
+
+.page-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -35,7 +81,7 @@ header {
     position: relative;
 }
 
-/* Creating the red accent line under the header */
+/* Red accent line under the header */
 header::after {
     content: '';
     position: absolute;
@@ -63,6 +109,40 @@ nav {
     align-items: center;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent);
+}
+
+.theme-icon {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+body.light-mode .theme-toggle {
+    border-color: rgba(29, 35, 51, 0.15);
+}
+
 .nav-link {
     text-decoration: none;
     color: var(--text-muted);
@@ -85,27 +165,150 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--bg-main);
+    background-color: white;
     border-radius: 50%;
     height: 35px;
     width: 35px;
     cursor: pointer;
-    background-color: white; /* White circle background for user icon like in image */
 }
 
-/* ----------------- Main Content ----------------- */
-main {
-    padding: 2rem 5%;
+body.light-mode .btn-user {
+    background-color: var(--input-bg);
 }
 
-.page-title {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
+
+
+/* =========================================================
+   4. LOGIN SECTION
+   ========================================================= */
+.login-wrapper {
+    width: 100%;
+    min-height: 85vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--bg-card);
+    padding: 3rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-circle {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(240, 75, 102, 0.1);
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 1.2rem auto;
+}
+
+.login-header h2 {
     color: var(--text-main);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.4rem;
 }
 
-/* ----------------- Stats Grid ----------------- */
+.login-header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-left: 2px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(161, 161, 170, 0.5);
+}
+
+.input-wrapper input:focus {
+    background-color: var(--bg-main);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(240, 75, 102, 0.15);
+}
+
+.login-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(240, 75, 102, 0.3);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(240, 75, 102, 0.4);
+    opacity: 0.95;
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+/* =========================================================
+   5. DASHBOARD SECTION
+   ========================================================= */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -135,12 +338,13 @@ main {
     color: var(--text-muted);
 }
 
-/* Special styling for the Revenue card */
 .revenue-card {
     border: 1px solid var(--accent);
 }
 
-/* ----------------- Table Section ----------------- */
+/* =========================================================
+   6. GLOBAL TABLES
+   ========================================================= */
 .table-container {
     width: 100%;
 }
@@ -173,8 +377,6 @@ th {
     color: var(--text-main);
 }
 
-
-
 td {
     padding: 14px 1rem;
     font-size: 0.85rem;
@@ -186,10 +388,12 @@ tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.02);
 }
 
-/* ----------------- Orders Layout ----------------- */
+/* =========================================================
+   7. ORDERS SECTION
+   ========================================================= */
 .order-main-container {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* Left side slightly wider */
+    grid-template-columns: 1.1fr 0.9fr; 
     gap: 2rem;
     align-items: start;
 }
@@ -200,7 +404,6 @@ tbody tr:hover {
     gap: 2rem;
 }
 
-/* ----------------- Form Cards ----------------- */
 .form-card {
     background-color: transparent;
     border-radius: 6px;
@@ -220,12 +423,12 @@ tbody tr:hover {
 
 .form-card-field {
     display: grid;
+    background-color: var(--bg-card);
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    padding: 1.5rem 0 0 0;
+    padding: 1.5rem;
 }
 
-/* ----------------- Inputs & Selects ----------------- */
 .input-box, .comb-box {
     display: flex;
     flex-direction: column;
@@ -233,7 +436,7 @@ tbody tr:hover {
 }
 
 .input-box.full-width {
-    grid-column: span 2; /* Makes address and balance stretch full width */
+    grid-column: span 2; 
 }
 
 .input-box label, .comb-box label {
@@ -241,7 +444,7 @@ tbody tr:hover {
     font-size: 0.8rem;
 }
 
-.input-box input, .comb-box select {
+/* .input-box input, .comb-box select {
     background-color: var(--input-bg);
     border: none;
     color: var(--text-main);
@@ -251,45 +454,27 @@ tbody tr:hover {
     outline: none;
     width: 100%;
     transition: background-color 0.2s;
-}
+} */
 
-.input-box input:focus, .comb-box select:focus {
-    background-color: #1a365d; /* Slightly lighter on focus */
-}
-
-/* ----------------- Buttons ----------------- */
-.buttons {
-    font-weight: 600;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
+/* Optional tweak: Add a subtle border to your inputs to make them extra crisp */
+.input-box input, .comb-box select {
+    background-color: var(--input-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Adds a tiny bit of definition */
     color: var(--text-main);
-}
-
-.buttons:hover {
-    opacity: 0.85;
-}
-
-.add-to-cart-btn {
-    background-color: var(--btn-blue);
-    width: 100%;
-    padding: 12px;
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-}
-
-.btn-remove {
-    background-color: var(--accent);
-    color: white;
-    border: none;
-    padding: 6px 12px;
+    padding: 10px 12px;
     border-radius: 4px;
-    font-size: 0.8rem;
-    cursor: pointer;
+    font-size: 0.85rem;
+    outline: none;
+    width: 100%;
+    transition: all 0.2s ease;
 }
 
-/* ----------------- Summary Card ----------------- */
+/* And make the focus state a tiny bit lighter */
+.input-box input:focus, .comb-box select:focus {
+    background-color: #1a1e36; 
+    border-color: var(--text-muted);
+}
+
 .summary-card {
     background-color: var(--bg-card);
     padding: 1.5rem;
@@ -321,31 +506,290 @@ tbody tr:hover {
     margin-top: 1rem;
 }
 
-.btn-reset {
-    background-color: var(--btn-orange);
-    padding: 10px 20px;
+/* =========================================================
+   8. GLOBAL BUTTONS
+   ========================================================= */
+.buttons {
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    color: var(--text-main);
 }
 
-.btn-purchase {
+.buttons:hover {
+    opacity: 0.85;
+}
+
+.add-to-cart-btn {
+    background-color: var(--btn-blue);
+    width: 100%;
+    padding: 12px;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.btn-remove {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-reset { background-color: var(--btn-orange); padding: 10px 20px; }
+.btn-purchase { background-color: var(--btn-green); padding: 10px 20px; flex-grow: 1; }
+.btn-save { background-color: var(--btn-green); }
+.btn-update { background-color: var(--btn-blue); }
+
+.btn-delete {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-delete:hover { opacity: 0.85; }
+
+/* =========================================================
+   9. ITEMS & CUSTOMERS SECTIONS
+   ========================================================= */
+.item-main-container, .customer-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.manage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.manage-box {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 6px;
+    flex: 1; 
+    max-width: 700px;
+}
+
+.form-inline {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; 
+    gap: 15px;
+}
+
+.form-inline input {
+    background-color: var(--input-bg);
+    border: none;
+    color: var(--text-main);
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    outline: none;
+    width: 100%;
+}
+
+.form-inline input::placeholder { color: var(--text-muted); }
+.form-inline input:focus { background-color: #1a365d; }
+
+.manage-buttons {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.item-buttons, .customer-buttons {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    color: white;
+}
+
+.search-box {
+    flex: 0 0 250px; 
+}
+
+.search-box input {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: none;
+    color: var(--text-main);
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    outline: none;
+}
+
+.search-box input::placeholder { color: var(--text-muted); }
+.search-box input:focus { background-color: #1a365d; }
+
+/* =========================================================
+   10. HISTORY SECTION
+   ========================================================= */
+.history-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.manage-header.align-center {
+    align-items: center; 
+}
+
+.history-search-box {
+    flex: 0 0 450px; 
+    max-width: 50%;
+}
+
+.history-buttons {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    color: white;
+}
+
+/* ========================================================
+11.  Footer
+   ======================================================== */
+
+   .system-footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px; /* Very slim */
+    background-color: var(--bg-card);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    z-index: 2000;
+}
+
+.footer-left { display: flex; align-items: center; gap: 8px; }
+
+/* Status light effect */
+.status-indicator.online {
+    width: 8px;
+    height: 8px;
     background-color: var(--btn-green);
-    padding: 10px 20px;
-    flex-grow: 1; /* Makes the purchase button take up remaining space */
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--btn-green);
 }
 
-/* ----------------- Table adjustments ----------------- */
-.cart-item-table-container table {
-    margin-top: 0;
-}
-.cart-item-table-container th, 
-.cart-item-table-container td {
-    padding: 12px 1rem;
+.footer-right strong {
+    color: var(--accent);
 }
 
-/* Hide other sections by default */
-.hidden, .content-section {
-    display: none;
+.footer-center strong {
+    color: var(--text-main);
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
-.content-section.active {
-    display: block;
+/* Optional: Add a subtle hover effect to your name */
+.footer-center strong:hover {
+    color: var(--accent);
+    cursor: default;
+}
+
+/* =========================================================
+   12. LIGHT MODE COLOR ACCENTS
+   ========================================================= */
+body.light-mode {
+    background: linear-gradient(180deg, #eefbff 0%, #f7f7f7 100%);
+}
+
+/* body.light-mode header {
+    box-shadow: 0 10px 24px rgba(55, 93, 173, 0.08);
+} */
+
+body.light-mode .content-section {
+    border-bottom: 1px dashed rgba(80, 109, 170, 0.22);
+}
+
+body.light-mode .login-container,
+body.light-mode .stat-card,
+body.light-mode .summary-card,
+body.light-mode .manage-box,
+body.light-mode thead tr,
+body.light-mode .system-footer {
+    box-shadow: 0 8px 24px rgba(53, 87, 156, 0.08);
+}
+
+body.light-mode .stat-card {
+    border: 1px solid #d9e4ff;
+    background: linear-gradient(165deg, #ffffff 0%, #f5f8ff 100%);
+}
+
+body.light-mode .stat-card:nth-child(1) {
+    border-top: 3px solid #2f78d9;
+}
+
+body.light-mode .stat-card:nth-child(2) {
+    border-top: 3px solid #2f9f66;
+}
+
+body.light-mode .stat-card:nth-child(3) {
+    border-top: 3px solid #db8c13;
+}
+
+body.light-mode .table-header,
+body.light-mode .form-card-header {
+    background: linear-gradient(90deg, #d84c6f 0%, #e86f8c 100%);
+    color: #ffffff;
+}
+
+body.light-mode .card-header-text{
+    color: #ffffff;
+}
+
+body.light-mode .order-buttons {
+    color: #ffffff;
+}
+
+body.light-mode .nav-link.active{
+    background-color: #d84c6f;
+    color: #ffffff;
+}
+
+body.light-mode thead tr {
+    background-color: #f4f8ff;
+}
+
+body.light-mode td {
+    border-bottom: 1px solid #e1e9fb;
+}
+
+body.light-mode tbody tr:hover {
+    background-color: #eaf1ff;
+}
+
+body.light-mode .input-wrapper input,
+body.light-mode .input-box input,
+body.light-mode .comb-box select,
+body.light-mode .form-inline input,
+body.light-mode .search-box input {
+    border: 1px solid #d3dffb;
+}
+
+body.light-mode .input-wrapper input:focus,
+body.light-mode .input-box input:focus,
+body.light-mode .comb-box select:focus,
+body.light-mode .form-inline input:focus,
+body.light-mode .search-box input:focus {
+    border-color: #2f78d9;
+    background-color: #f8fbff;
 }
