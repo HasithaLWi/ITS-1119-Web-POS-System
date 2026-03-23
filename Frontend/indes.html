@@ -21,38 +21,39 @@
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                         </svg>
                     </div>
-                    <h2>Welcome Back</h2>
+                    <h2 id="welcome-message">Welcome Back</h2>
                     <p>Sign in to access the POS System</p>
                 </div>
 
-                <div class="login-form">
+                <form id="login-form" class="login-form">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <div class="input-wrapper">
-                            <input type="text" id="username" placeholder="Enter your username">
+                            <input type="text" id="username" placeholder="Enter your username" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
                         <div class="input-wrapper">
-                            <input type="password" id="password" placeholder="Enter your password">
+                            <input type="password" id="password" placeholder="Enter your password" required>
                         </div>
                     </div>
 
-                    <button id="login-btn" class="btn-primary login-btn">Login to Dashboard</button>
-                </div>
+                    <button type="submit" id="login-btn" class="btn-primary login-btn">Login to Dashboard</button>
+                </form>
             </div>
         </div>
     </section>
-    <div id="main-app">
-        <header>
+    <div id="main-app" class="main-content hidden">
+        <header class="system-header">
             <div class="logo">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="logo-icon">
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
                 POS System
             </div>
+            
             <nav>
                 <a href="#" class="nav-link nav-dashboard active" data-target="dashboard">Dashboard</a>
                 <a href="#" class="nav-link nav-orders" data-target="orders">Orders</a>
@@ -61,6 +62,17 @@
                 <a href="#" class="nav-link nav-history" data-target="history">History</a>
             </nav>
             <div class="header-actions">
+                <div class="accent-picker" id="accent-picker">
+                    <button id="color-theme-circle" class="color-circle" type="button" aria-label="Choose accent color" aria-expanded="false"></button>
+                    <div id="accent-palette" class="accent-palette hidden" role="menu" aria-label="Accent color options">
+                        <button class="accent-swatch" type="button" data-color="#f04b66" style="--swatch:#f04b66" aria-label="Rose accent"></button>
+                        <button class="accent-swatch" type="button" data-color="#ff8c00" style="--swatch:#ff8c00" aria-label="Orange accent"></button>
+                        <button class="accent-swatch" type="button" data-color="#f1c40f" style="--swatch:#f1c40f" aria-label="Yellow accent"></button>
+                        <button class="accent-swatch" type="button" data-color="#2ecc71" style="--swatch:#2ecc71" aria-label="Green accent"></button>
+                        <button class="accent-swatch" type="button" data-color="#3498db" style="--swatch:#3498db" aria-label="Blue accent"></button>
+                        <button class="accent-swatch" type="button" data-color="#9b59b6" style="--swatch:#9b59b6" aria-label="Violet accent"></button>
+                    </div>
+                </div>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode" title="Switch theme">
                     <span class="theme-icon" aria-hidden="true">🌙</span>
                     <span class="theme-label">Dark</span>

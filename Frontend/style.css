@@ -13,13 +13,16 @@
 
     --btn-blue: #3498db;      /* Add to cart blue */
     --btn-green: #2ecc71;     /* Purchase green */
-    --btn-orange: #f39c12;    /* Reset / Subtotal orange */
+    --btn-orange: #ffab24;    /* Reset / Subtotal orange */
 }
 
 body.light-mode {
     --bg-main: #eef3ff;
     --bg-card: #ffffff;
     --accent: #d84c6f;
+    --newAccent: #FF8C00;
+    --newAccent2: #FFD54F;
+
     --text-main: #1d2333;
     --text-muted: #55607a;
     --header-bg: #ffffff;
@@ -47,6 +50,7 @@ body {
 /* Delete or comment out this block when you add JavaScript navigation */
 .content-section {
     display: block !important;
+    min-height: 100vh !important;
     margin-bottom: 5rem; /* Adds breathing room between sections */
     border-bottom: 1px dashed rgba(255, 255, 255, 0.1); /* Visual separator */
     padding-bottom: 3rem;
@@ -78,7 +82,70 @@ header {
     padding: 1rem 2rem;
     background-color: var(--header-bg);
     border-bottom: 2px solid var(--bg-card);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.color-circle {
+    width: 20px;
+    height: 20px;
+    background-color: var(--accent);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.accent-picker {
     position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.accent-palette {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: -6px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 126px;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: var(--bg-card);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+    z-index: 1200;
+}
+
+.accent-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-color: var(--swatch);
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.accent-swatch:hover {
+    transform: scale(1.08);
+}
+
+.accent-swatch.active {
+    border-color: var(--text-main);
+    transform: scale(1.05);
+}
+
+body.light-mode .color-circle {
+    border-color: rgba(29, 35, 51, 0.28);
+}
+
+body.light-mode .accent-palette {
+    border-color: rgba(29, 35, 51, 0.12);
 }
 
 /* Red accent line under the header */
@@ -709,16 +776,16 @@ tbody tr:hover {
    12. LIGHT MODE COLOR ACCENTS
    ========================================================= */
 body.light-mode {
-    background: linear-gradient(180deg, #eefbff 0%, #f7f7f7 100%);
+    background-color: var(--bg-main);
 }
 
 /* body.light-mode header {
     box-shadow: 0 10px 24px rgba(55, 93, 173, 0.08);
 } */
 
-body.light-mode .content-section {
+/* body.light-mode .content-section {
     border-bottom: 1px dashed rgba(80, 109, 170, 0.22);
-}
+} */
 
 body.light-mode .login-container,
 body.light-mode .stat-card,
@@ -748,7 +815,7 @@ body.light-mode .stat-card:nth-child(3) {
 
 body.light-mode .table-header,
 body.light-mode .form-card-header {
-    background: linear-gradient(90deg, #d84c6f 0%, #e86f8c 100%);
+    background: var(--accent);
     color: #ffffff;
 }
 
@@ -761,7 +828,7 @@ body.light-mode .order-buttons {
 }
 
 body.light-mode .nav-link.active{
-    background-color: #d84c6f;
+    background-color: var(--accent);
     color: #ffffff;
 }
 
